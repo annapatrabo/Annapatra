@@ -70,7 +70,7 @@ public class donorregister extends AppCompatActivity {
                 final String demail = donoremail.getText().toString();
                 final String dpassword = donorpassword.getText().toString();
                 final String dcpassword = donorcpassword.getText().toString();
-                final String dmobile = donormob.getText().toString().trim();
+                final String dmobile = donormob.getText().toString();
                 final String daddress = donoraddress.getText().toString();
 
 
@@ -115,12 +115,12 @@ public class donorregister extends AppCompatActivity {
 
 
                 if (Patterns.EMAIL_ADDRESS.matcher(demail).matches()) {
-                    databaseReference.child("donorusers").addListenerForSingleValueEvent(new ValueEventListener() {
+                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("donorusers");
+                    databaseReference.orderByChild("mobilenumber").equalTo(dmobile).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(dataSnapshot.child(dmobile).exists()){
+                            if(snapshot.exists()){
                                 Toast.makeText(donorregister.this,"User already registered",Toast.LENGTH_SHORT).show();
-
                             }
                             else {
                                 duser=firebaseAuth.getCurrentUser();
