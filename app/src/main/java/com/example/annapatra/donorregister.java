@@ -119,7 +119,7 @@ public class donorregister extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(dataSnapshot.child(dmobile).exists()){
-                                Toast.makeText(donorregister.this,"User already registered...",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(donorregister.this,"User already registered",Toast.LENGTH_SHORT).show();
 
                             }
                             else {
