@@ -92,7 +92,7 @@ public class donordash extends AppCompatActivity {
         editor.commit();
         finish();
         firebaseAuth.signOut();
-        Toast.makeText(this,"Logout Successfullly",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this,userselection.class));
     }
 
