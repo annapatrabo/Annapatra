@@ -45,14 +45,13 @@ public class donorprofile extends AppCompatActivity {
         ddfn=findViewById(R.id.getdname);
         ddph=findViewById(R.id.getdmobilenumber);
         databaseReference= firebaseDatabase.getInstance().getReference().child("donorusers").child(userID);
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
                     String val = snapshot.child("email").getValue().toString();
                     String val2 = snapshot.child("firstname").getValue().toString();
-                    String val3 = snapshot.child("mobilenumber").getValue().toString();
+                    String val3 = snapshot.child("mobilenumber").getValue().toString();;
                     ddemail.setText(val);
                     ddfn.setText(val2);
                     ddph.setText(val3);

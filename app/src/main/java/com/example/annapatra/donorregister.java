@@ -123,20 +123,20 @@ public class donorregister extends AppCompatActivity {
                                 Toast.makeText(donorregister.this,"User already registered",Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                duser=firebaseAuth.getCurrentUser();
-                                userID=duser.getUid();
-                                databaseReference.child("donorusers").child(userID).child("email").setValue(demail);
-                                databaseReference.child("donorusers").child(userID).child("firstname").setValue(dfname);
-                                databaseReference.child("donorusers").child(userID).child("lastname").setValue(dlname);
-                                databaseReference.child("donorusers").child(userID).child("mobilenumber").setValue(dmobile);
-                                databaseReference.child("donorusers").child(userID).child("password").setValue(dpassword);
-                                databaseReference.child("donorusers").child(userID).child("address").setValue(daddress);
-                                Toast.makeText(donorregister.this,"Registered Successfully",Toast.LENGTH_SHORT).show();
+
                                 firebaseAuth.createUserWithEmailAndPassword(demail, dpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
+                                        userID= firebaseAuth.getUid();
+                                        databaseReference.child(userID).child("email").setValue(demail);
+                                        databaseReference.child(userID).child("firstname").setValue(dfname);
+                                        databaseReference.child(userID).child("lastname").setValue(dlname);
+                                        databaseReference.child(userID).child("mobilenumber").setValue(dmobile);
+                                        databaseReference.child(userID).child("password").setValue(dpassword);
+                                        databaseReference.child(userID).child("address").setValue(daddress);
                                         startActivity(new Intent(donorregister.this,donordash.class));
                                         finish();
+                                        Toast.makeText(donorregister.this,"Registered Successfully",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }

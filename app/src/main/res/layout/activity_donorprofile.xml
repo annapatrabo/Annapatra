@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/stolzl"
-            android:text="Ashish Rana"
+            android:text=""
             android:textColor="#0d6d6d"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -64,7 +64,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="7dp"
             android:fontFamily="@font/stolzllight"
-            android:text="Rashish423@gmail.com"
+            android:text=""
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -94,7 +94,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="7dp"
             android:fontFamily="@font/stolzllight"
-            android:text="9370987221"
+            android:text=""
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold" />

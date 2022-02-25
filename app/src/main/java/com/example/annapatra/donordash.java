@@ -39,7 +39,6 @@ public class donordash extends AppCompatActivity {
     DataSnapshot dataSnapshot;
     Adapter adapter;
     private FirebaseDatabase firebaseDatabase;
-    String userID="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
