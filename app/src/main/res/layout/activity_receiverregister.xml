@@ -41,7 +41,7 @@ android:background="@drawable/signup">
                 android:layout_height="fill_parent">
 
                 <EditText
-                    android:id="@+id/receiverfn"
+                    android:id="@+id/etReceiverFN"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -61,7 +61,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/receiverln"
+                    android:id="@+id/etReceiverLN"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -69,7 +69,6 @@ android:background="@drawable/signup">
                     android:autofillHints="Last Name"
                     android:background="@color/themegreen"
                     android:fontFamily="@font/stolzl"
-
                     android:hint=" Last Name"
                     android:shadowColor="@color/themegreen"
                     android:shadowDx="0"
@@ -81,7 +80,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/receiveremail"
+                    android:id="@+id/etReceiverEmail"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -101,7 +100,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/receiverpassword"
+                    android:id="@+id/etReceiverPassword"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -121,7 +120,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/receivercpassword"
+                    android:id="@+id/etReceiverCPassword"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -140,7 +139,7 @@ android:background="@drawable/signup">
                     tools:ignore="HardcodedText" />
 
                 <EditText
-                    android:id="@+id/receivermob"
+                    android:id="@+id/etReceiverMob"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -160,7 +159,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/receiveruniqueno"
+                    android:id="@+id/etReceiverUniqueNo"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -179,7 +178,7 @@ android:background="@drawable/signup">
                     tools:ignore="HardcodedText" />
 
                 <EditText
-                    android:id="@+id/receiverorganizationame"
+                    android:id="@+id/etReceiverOrganizatioName"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -211,7 +210,7 @@ android:background="@drawable/signup">
                     android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/receiversignup"
+                    android:id="@+id/btnReceiverSignUp"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
