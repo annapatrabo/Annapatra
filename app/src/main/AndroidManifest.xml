@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Annapatra">
         <activity
+            android:name=".receiverdash"
+            android:exported="false" />
+        <activity
             android:name=".donorprofile"
             android:exported="false" />
         <activity

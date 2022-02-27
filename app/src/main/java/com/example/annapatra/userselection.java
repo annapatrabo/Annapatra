@@ -22,7 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class userselection extends AppCompatActivity {
-DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://annapatrabo-4e59d-default-rtdb.firebaseio.com/");
+    String url="https://annapatrabo-4e59d-default-rtdb.firebaseio.com/";
+DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl(url);
    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
