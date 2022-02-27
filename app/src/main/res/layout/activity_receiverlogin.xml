@@ -33,7 +33,7 @@
         tools:layout_editor_absoluteY="286dp" />
 
     <EditText
-        android:id="@+id/receivermail"
+        android:id="@+id/etReceiverMail"
         android:layout_width="310dp"
         android:layout_height="30dp"
         android:autofillHints="Email"
@@ -55,7 +55,7 @@
         android:layout_marginLeft="40dp" />
 
     <EditText
-        android:id="@+id/receiverpassword"
+        android:id="@+id/etReceiverpassword"
         android:layout_width="310dp"
         android:layout_height="30dp"
         android:background="@color/themegreen"
@@ -66,7 +66,7 @@
         android:layout_marginLeft="40dp"/>
 
     <Button
-        android:id="@+id/btnreceiverlogin"
+        android:id="@+id/btnReceiverLogin"
         android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"

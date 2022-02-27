@@ -38,7 +38,7 @@ public class receiverdash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receiverdash);
 
-
+    setUpToolbar();
         navigationView=findViewById(R.id.ReceiverDashNav);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
