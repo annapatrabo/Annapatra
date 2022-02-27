@@ -57,7 +57,7 @@ public class donorprofile extends AppCompatActivity {
                     ddph.setText(val3);
                }
                 else{
-                   Toast.makeText(donorprofile.this,"Login ully",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(donorprofile.this,"Error Fetching Data",Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -66,9 +66,6 @@ public class donorprofile extends AppCompatActivity {
 
             }
         });
-
-        ddemail=findViewById(R.id.getdemail);
-
 
     }
 }

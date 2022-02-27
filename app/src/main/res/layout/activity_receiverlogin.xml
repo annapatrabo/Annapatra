@@ -36,13 +36,13 @@
         android:id="@+id/receivermail"
         android:layout_width="310dp"
         android:layout_height="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="320dp"
         android:autofillHints="Email"
         android:background="@color/themegreen"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="40dp" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:layout_width="181dp"
@@ -58,12 +58,12 @@
         android:id="@+id/receiverpassword"
         android:layout_width="310dp"
         android:layout_height="30dp"
-        android:background="@color/themegreen"
-        android:textColor="@color/white"
-        tools:ignore="HardcodedText"
-        android:inputType="textPassword"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="410dp"
-        android:layout_marginLeft="40dp"/>
+        android:background="@color/themegreen"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btnreceiverlogin"
@@ -80,6 +80,7 @@
         android:text="Login"
         android:textColor="@color/themegreen"
         android:textSize="20sp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="420dp"
@@ -113,6 +114,7 @@
             android:textColor="#008080"
             android:textSize="15sp"
             tools:ignore="HardcodedText" />
+
         <Button
             android:id="@+id/btndonorloginpage"
             android:layout_width="180dp"

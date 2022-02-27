@@ -24,14 +24,19 @@ public class splash extends AppCompatActivity {
             public void run() {
                 SharedPreferences sharedPreferences= getSharedPreferences(donordash.PREFS_NAME,0);
                 boolean hasLoggedIn=sharedPreferences.getBoolean("hasLoggedIn",false);
+                boolean hasgLoggedIn=sharedPreferences.getBoolean("hasgLoggedIn",false);
                 if(hasLoggedIn){
                     startActivity(new Intent(splash.this, donordash.class));
                     finish();
                 }
-                else{
-                    startActivity(new Intent(splash.this,userselection.class));
+                else if(hasgLoggedIn){
+                    startActivity(new Intent(splash.this, receiverdash.class));
                     finish();
                 }
+                else{
+                    startActivity(new Intent(splash.this,userselection.class));
+                finish();
+            }
             }
         },1000);
 

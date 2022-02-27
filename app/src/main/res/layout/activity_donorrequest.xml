@@ -5,98 +5,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".donorrequest">
-    <TextView
-        android:layout_width="wrap_content"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/stolzl"
-        android:text="Donate"
-        android:textColor="@color/themegreen"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="190dp">
-
-    <EditText
-        android:id="@+id/foodname"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
         android:background="@color/themegreen"
-        android:fontFamily="@font/stolzl"
-        android:hint=" Name of Food"
-        android:inputType="text"
-        android:shadowColor="@color/themegreen"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donate"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#ffff"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="190dp">
+        <EditText
+            android:id="@+id/dfoodname"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/themegreen"
+            android:fontFamily="@font/stolzl"
+            android:hint=" Name of Food"
+            android:inputType="text"
+            android:shadowColor="@color/themegreen"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
 
-    <EditText
-        android:id="@+id/foodqty"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
-        android:background="@color/themegreen"
-        android:fontFamily="@font/stolzl"
-        android:hint=" Quantity in KGs"
-        android:inputType="number"
-        android:textColorHint="@color/white"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        <EditText
+            android:id="@+id/dfoodqty"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="80dp"
+            android:background="@color/themegreen"
+            android:fontFamily="@font/stolzl"
+            android:hint=" Quantity in KGs"
+            android:inputType="number"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
 
-    <EditText
-        android:id="@+id/numofpeople"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="140dp"
-        android:background="@color/themegreen"
-        android:fontFamily="@font/stolzl"
-        android:hint=" No. of People can Feed"
-        android:inputType="number"
-        android:shadowColor="@color/white"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        <EditText
+            android:id="@+id/numofpeople"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="140dp"
+            android:background="@color/themegreen"
+            android:fontFamily="@font/stolzl"
+            android:hint=" No. of People can Feed"
+            android:inputType="number"
+            android:shadowColor="@color/white"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/sendrequest"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="210dp"
-        android:background="@drawable/btnback"
-        android:fontFamily="@font/stolzl"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:text="Send Request"
-        android:textColor="@color/themegreen"
-        android:textSize="15sp"
-        tools:ignore="HardcodedText" />
-</RelativeLayout>
+        <EditText
+            android:id="@+id/daddress"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="200dp"
+            android:background="@color/themegreen"
+            android:fontFamily="@font/stolzl"
+            android:hint=" Address"
+            android:inputType="number"
+            android:shadowColor="@color/white"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
-
-
-
-
+        <Button
+            android:id="@+id/dsendrequest"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="270dp"
+            android:background="@drawable/btnback"
+            android:fontFamily="@font/stolzl"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Send Request"
+            android:textColor="@color/themegreen"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText"/>
+    </RelativeLayout>
 </RelativeLayout>

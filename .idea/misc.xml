@@ -9,7 +9,7 @@
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_donordash.xml" value="0.264" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_donorprofile.xml" value="0.2439814814814815" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_donorregister.xml" value="0.264" />
-        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_donorrequest.xml" value="0.4" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_donorrequest.xml" value="0.264" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_login.xml" value="0.12777777777777777" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_main.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/layout/activity_main2.xml" value="0.2" />
@@ -30,6 +30,12 @@
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/menu/donormenu.xml" value="0.2439814814814815" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14212962962962963" />
         <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/Annapatra/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14212962962962963" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/New folder/Annapatra/app/src/main/res/layout/activity_donorprofile.xml" value="0.2439814814814815" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/New folder/Annapatra/app/src/main/res/layout/activity_donorrequest.xml" value="0.21296296296296297" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/New folder/Annapatra/app/src/main/res/layout/activity_receiverdash.xml" value="0.2439814814814815" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/New folder/Annapatra/app/src/main/res/layout/activity_receiverlogin.xml" value="0.2439814814814815" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/New folder/Annapatra/app/src/main/res/layout/activity_receiverprofile.xml" value="0.2439814814814815" />
+        <entry key="..\:/Users/Ashish Rana/AndroidStudioProjects/New folder/Annapatra/app/src/main/res/layout/activity_receiverregister.xml" value="0.2439814814814815" />
       </map>
     </option>
   </component>
