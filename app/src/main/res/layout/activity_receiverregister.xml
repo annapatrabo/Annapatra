@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".receiverregister"
-android:background="@drawable/signup">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".receiverregister"
+    android:background="@drawable/signup">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@ android:background="@drawable/signup">
                 android:layout_height="fill_parent">
 
                 <EditText
-                    android:id="@+id/etReceiverFN"
+                    android:id="@+id/receiverfn"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -61,7 +61,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/etReceiverLN"
+                    android:id="@+id/receiverln"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -69,6 +69,7 @@ android:background="@drawable/signup">
                     android:autofillHints="Last Name"
                     android:background="@color/themegreen"
                     android:fontFamily="@font/stolzl"
+
                     android:hint=" Last Name"
                     android:shadowColor="@color/themegreen"
                     android:shadowDx="0"
@@ -80,7 +81,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/etReceiverEmail"
+                    android:id="@+id/receiveremail"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -100,7 +101,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/etReceiverPassword"
+                    android:id="@+id/receiverpassword"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -120,7 +121,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/etReceiverCPassword"
+                    android:id="@+id/receivercpassword"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -139,7 +140,7 @@ android:background="@drawable/signup">
                     tools:ignore="HardcodedText" />
 
                 <EditText
-                    android:id="@+id/etReceiverMob"
+                    android:id="@+id/receivermob"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -159,7 +160,7 @@ android:background="@drawable/signup">
 
 
                 <EditText
-                    android:id="@+id/etReceiverUniqueNo"
+                    android:id="@+id/receiveruniqueno"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -178,7 +179,7 @@ android:background="@drawable/signup">
                     tools:ignore="HardcodedText" />
 
                 <EditText
-                    android:id="@+id/etReceiverOrganizatioName"
+                    android:id="@+id/receiverorganizationame"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="50dp"
@@ -210,7 +211,7 @@ android:background="@drawable/signup">
                     android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/btnReceiverSignUp"
+                    android:id="@+id/receiversignup"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
