@@ -129,7 +129,7 @@ public class receiverregister extends AppCompatActivity {
                                         databaseReference.child(userID).child("password").setValue(rpassword);
                                         databaseReference.child(userID).child("orguniqueid").setValue(runiqueno);
                                         databaseReference.child(userID).child("orgname").setValue(rorgname);
-                                        startActivity(new Intent(receiverregister.this,donordash.class));
+                                        startActivity(new Intent(receiverregister.this,receiverdash.class));
                                         finish();
                                         Toast.makeText(receiverregister.this,"Registered Successfully",Toast.LENGTH_SHORT).show();
                                     }

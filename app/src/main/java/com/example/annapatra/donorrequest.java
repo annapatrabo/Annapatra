@@ -13,8 +13,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
@@ -40,17 +42,21 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class donorrequest extends AppCompatActivity {
-    Button sendrqt;
+    Button sendrqt,getloc;
     TextView dlg, dlt;
     FusedLocationProviderClient fusedLocationProviderClient;
     Location currentLocation;
+    String token="e5EKh-OBRkqf36YhmWhI4J:APA91bGvsbMnsOGTUI9mKAJBQp2CATN5RZmwwyYY_--t1SxJe5DEKJjeOPzCkfRtSoyzD0zrgVfnt7ZkQGQUguUF9rzLI6cdd-SZf-AXdWYDKYOP_XFLMB_Yc7UYnTC9jxTOC26IqKgV";
     LocationManager locationManager;
     String latitude, longitude;
     TextView showLocation;
@@ -61,13 +67,18 @@ public class donorrequest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donorrequest);
         getSupportActionBar().hide();
+        final EditText foodname=findViewById(R.id.dfoodname);
+        final EditText foodqty=findViewById(R.id.dfoodqty);
+        final EditText numfeed=findViewById(R.id.numofpeople);
+        final EditText dadd=findViewById(R.id.daddress);
         showLocation = findViewById(R.id.dfoodname);
         dlg = findViewById(R.id.getdlg);
         dlt = findViewById(R.id.getdlt);
-        sendrqt = findViewById(R.id.getdlocation);
+        getloc = findViewById(R.id.getdlocation);
+        sendrqt=findViewById(R.id.dsendrequest);
         ActivityCompat.requestPermissions( this,
                 new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-        sendrqt.setOnClickListener(new View.OnClickListener() {
+        getloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 locationManager=(LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -77,19 +88,54 @@ public class donorrequest extends AppCompatActivity {
                 if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 {
                     //Write Function To enable gps
-
                     OnGPS();
                 }
                 else
                 {
                     //GPS is already On then
-
                     getLocation();
                 }
             }
         });
 
+
+        sendrqt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String onee = dlg.getText().toString();
+                final String nfood = foodname.getText().toString();
+                final String qfood = foodqty.getText().toString();
+                final String numpeo = numfeed.getText().toString();
+                final String daddr = dadd.getText().toString();
+                if(nfood.isEmpty()){
+                    foodname.setError("Field cannot be left blank");
+                    return;
+                }
+                if(qfood.isEmpty()){
+                    foodqty.setError("Field cannot be left blank");
+                    return;
+                }
+                if(numpeo.isEmpty()){
+                    numfeed.setError("Field cannot be left blank");
+                    return;}
+                if(daddr.isEmpty()){
+                    dadd.setError("Field cannot be left blank");
+                    return;}
+                if(onee.isEmpty()){
+                    Toast.makeText(donorrequest.this, "Please share your location", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(donorrequest.this, "Sending the Request", Toast.LENGTH_SHORT).show();
+                    FirebaseMessaging.getInstance().subscribeToTopic("all");
+                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Donote Request","Food Name : " +nfood+"\n"+"Quantity : " +qfood+"KG",getApplicationContext(),donorrequest.this);
+                    notificationsSender.SendNotifications();
+                }
+
+            }
+        });
+
     }
+
 
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(donorrequest.this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(donorrequest.this,
@@ -166,5 +212,11 @@ public class donorrequest extends AppCompatActivity {
         });
         final AlertDialog alertDialog=builder.create();
         alertDialog.show();
+
     }
+
+
+
+
+
 }
