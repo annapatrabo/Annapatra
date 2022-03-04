@@ -65,7 +65,7 @@ public class receiverdash extends AppCompatActivity {
                     String addlt = snapshot.child("Latitude").getValue().toString();
                     String addlg = snapshot.child("Longitude").getValue().toString();;
                     rfoodname.setText(val1);
-                    rfoodqty.setText(val2);
+                    rfoodqty.setText(val2+" "+"KG");
                     rnopeople.setText(val3);
                     raddress.setText(val4);
                     //String dddlt=addlt;

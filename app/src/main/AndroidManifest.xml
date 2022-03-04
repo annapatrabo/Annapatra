@@ -28,8 +28,8 @@
             android:name=".donorprofile"
             android:exported="false" />
         <activity
-            android:name=".donorrequest"
-            android:exported="false" />
+            android:name=".requesthistory"
+            android:exported="false"/>
         <activity
             android:name=".donordash"
             android:exported="false"
@@ -39,6 +39,9 @@
             android:exported="false" />
         <activity
             android:name=".donorregister"
+            android:exported="false" />
+        <activity
+            android:name=".donorrequest"
             android:exported="false" />
         <activity
             android:name=".receiverlogin"
