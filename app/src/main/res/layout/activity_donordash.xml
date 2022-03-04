@@ -44,6 +44,23 @@
             android:textColor="@color/themegreen"
             android:textSize="15sp"
             tools:ignore="HardcodedText" />
+        <Button
+            android:id="@+id/dhistory"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btnback"
+            android:fontFamily="@font/stolzl"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Request History"
+            android:textColor="@color/themegreen"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView

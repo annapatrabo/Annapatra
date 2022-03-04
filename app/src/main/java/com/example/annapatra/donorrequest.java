@@ -42,6 +42,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -58,6 +60,7 @@ public class donorrequest extends AppCompatActivity {
     Location currentLocation;
     String token="e5EKh-OBRkqf36YhmWhI4J:APA91bGvsbMnsOGTUI9mKAJBQp2CATN5RZmwwyYY_--t1SxJe5DEKJjeOPzCkfRtSoyzD0zrgVfnt7ZkQGQUguUF9rzLI6cdd-SZf-AXdWYDKYOP_XFLMB_Yc7UYnTC9jxTOC26IqKgV";
     LocationManager locationManager;
+    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://annapatrabo-4e59d-default-rtdb.firebaseio.com/");
     String latitude, longitude;
     TextView showLocation;
     private static final int REQUEST_LOCATION = 1;
@@ -125,16 +128,32 @@ public class donorrequest extends AppCompatActivity {
                     Toast.makeText(donorrequest.this, "Please share your location", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                   // String loncg = dlt.getText().toString();
+
+                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Requests");
+                    databaseReference.child("f").child("Food Name").setValue(nfood);
+                    databaseReference.child("f").child("Quantity").setValue(qfood);
+                    databaseReference.child("f").child("no of people").setValue(numpeo);
+                    databaseReference.child("f").child("address").setValue(daddr);
+                    databaseReference.child("f").child("Latitude").setValue(latitude);
+                    databaseReference.child("f").child("Longitude").setValue(longitude);
                     Toast.makeText(donorrequest.this, "Sending the Request", Toast.LENGTH_SHORT).show();
                     FirebaseMessaging.getInstance().subscribeToTopic("all");
                     FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Donote Request","Food Name : " +nfood+"\n"+"Quantity : " +qfood+"KG",getApplicationContext(),donorrequest.this);
                     notificationsSender.SendNotifications();
+                    startActivity(new Intent(donorrequest.this,donordash.class));
+                    finish();
+                    Toast.makeText(donorrequest.this,"Sent Request Successfully",Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
     }
+
+    /*void createrequest(String nfood, String qfood, String numpeo, String daddr){
+
+    }*/
 
 
     private void getLocation() {

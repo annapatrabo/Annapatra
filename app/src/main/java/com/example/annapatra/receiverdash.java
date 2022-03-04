@@ -6,7 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,8 +24,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class receiverdash extends AppCompatActivity {
@@ -41,7 +47,48 @@ public class receiverdash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receiverdash);
         setUpToolbar();
+        final TextView rfoodname=findViewById(R.id.rfoodname);
+        final TextView rfoodqty=findViewById(R.id.rfoodqty);
+        final TextView rnopeople=findViewById(R.id.rnopeople);
+        final TextView raddress=findViewById(R.id.raddress);
 
+        databaseReference= firebaseDatabase.getInstance().getReference().child("Requests").child("f");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    Toast.makeText(receiverdash.this,"New Donate Request",Toast.LENGTH_SHORT).show();
+                    String val1 = snapshot.child("Food Name").getValue().toString();
+                    String val2 = snapshot.child("Quantity").getValue().toString();
+                    String val3 = snapshot.child("no of people").getValue().toString();
+                    String val4 = snapshot.child("address").getValue().toString();
+                    String addlt = snapshot.child("Latitude").getValue().toString();
+                    String addlg = snapshot.child("Longitude").getValue().toString();;
+                    rfoodname.setText(val1);
+                    rfoodqty.setText(val2);
+                    rnopeople.setText(val3);
+                    raddress.setText(val4);
+                    //String dddlt=addlt;
+                    //String dddlg=addlg;
+                }
+                else{
+                    Toast.makeText(receiverdash.this,"No Donate Request",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Button declined=findViewById(R.id.rdeclined);
+        declined.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference= firebaseDatabase.getInstance().getReference().child("Requests");
+                databaseReference.child("f").removeValue();
+            }
+        });
 
         navigationView=findViewById(R.id.dashnav);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

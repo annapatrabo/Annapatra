@@ -81,6 +81,13 @@ public class donordash extends AppCompatActivity {
                 startActivity(new Intent(donordash.this,donorrequest.class));
             }
         });
+        Button dhistory=findViewById(R.id.dhistory);
+        dhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(donordash.this,donorrequest.class));
+            }
+        });
 
     }
 
