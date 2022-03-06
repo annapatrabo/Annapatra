@@ -42,6 +42,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
@@ -62,6 +63,8 @@ public class donorrequest extends AppCompatActivity {
     LocationManager locationManager;
     String latitude, longitude;
     TextView showLocation;
+    FirebaseAuth firebaseAuth;
+    String userID;
     private static final int REQUEST_LOCATION = 1;
 
     @Override
@@ -69,6 +72,7 @@ public class donorrequest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donorrequest);
         getSupportActionBar().hide();
+        firebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
         final EditText foodname=findViewById(R.id.dfoodname);
         final EditText foodqty=findViewById(R.id.dfoodqty);
         final EditText numfeed=findViewById(R.id.numofpeople);
@@ -78,6 +82,7 @@ public class donorrequest extends AppCompatActivity {
         dlt = findViewById(R.id.getdlt);
         getloc = findViewById(R.id.getdlocation);
         sendrqt=findViewById(R.id.dsendrequest);
+        userID= firebaseAuth.getUid();
         ActivityCompat.requestPermissions( this,
                 new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         getloc.setOnClickListener(new View.OnClickListener() {
@@ -131,13 +136,21 @@ public class donorrequest extends AppCompatActivity {
                     FirebaseMessaging.getInstance().subscribeToTopic("all");
                     FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Donote Request","Food Name : " +nfood+"\n"+"Quantity : " +qfood+"KG"+"\n"+"Address : " +daddr+"\n",getApplicationContext(),donorrequest.this);
                     notificationsSender.SendNotifications();
-                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Requests").child("f");
-                    databaseReference.child("Food Name").setValue(nfood);
-                    databaseReference.child("Quantity").setValue(qfood);
-                    databaseReference.child("no of people").setValue(numpeo);
-                    databaseReference.child("address").setValue(daddr);
-                    databaseReference.child("Latitude").setValue(latitude);
-                    databaseReference.child("Longitude").setValue(longitude);
+                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("Requests").child("f").child("Food Name").setValue(nfood);
+                    databaseReference.child("Requests").child("f").child("Quantity").setValue(qfood);
+                    databaseReference.child("Requests").child("f").child("no of people").setValue(numpeo);
+                    databaseReference.child("Requests").child("f").child("address").setValue(daddr);
+                    databaseReference.child("Requests").child("f").child("Latitude").setValue(latitude);
+                    databaseReference.child("Requests").child("f").child("Longitude").setValue(longitude);
+                    databaseReference.child("Requests").child("f").child("donoruid").setValue(userID);
+                    databaseReference.child("donorrequest").child(userID).child("Food Name").setValue(nfood);
+                    databaseReference.child("donorrequest").child(userID).child("Quantity").setValue(qfood);
+                    databaseReference.child("donorrequest").child(userID).child("no of people").setValue(numpeo);
+                    databaseReference.child("donorrequest").child(userID).child("address").setValue(daddr);
+                    databaseReference.child("donorrequest").child(userID).child("Latitude").setValue(latitude);
+                    databaseReference.child("donorrequest").child(userID).child("Longitude").setValue(longitude);
+                    databaseReference.child("requeststatus").child(userID).child("status").setValue("Inprocess");
                     startActivity(new Intent(donorrequest.this,donordash.class));
                     Toast.makeText(donorrequest.this, "Request Sent Successfully", Toast.LENGTH_SHORT).show();
 
@@ -146,7 +159,6 @@ public class donorrequest extends AppCompatActivity {
         });
 
     }
-
 
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(donorrequest.this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(donorrequest.this,

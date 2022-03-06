@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,12 +40,15 @@ public class requesthistory extends AppCompatActivity {
     LocationManager locationManager;
     String latitude, longitude;
     TextView showLocation;
+    String userID;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requesthistory);
         getSupportActionBar().hide();
+        firebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
         final TextView rdfoodname=findViewById(R.id.rdfoodname);
         final TextView rdfoodqty=findViewById(R.id.rdfoodqty);
         final TextView rdnopeople=findViewById(R.id.rdnopeople);
@@ -52,23 +56,22 @@ public class requesthistory extends AppCompatActivity {
         final TextView rrstatus=findViewById(R.id.rstatus);
 
 
-        databaseReference= firebaseDatabase.getInstance().getReference().child("Requests").child("f");
+        databaseReference= firebaseDatabase.getInstance().getReference().child("donorrequest");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-                    String val1 = snapshot.child("Food Name").getValue().toString();
-                    String val2 = snapshot.child("Quantity").getValue().toString();
-                    String val3 = snapshot.child("no of people").getValue().toString();
-                    String val4 = snapshot.child("address").getValue().toString();
-                    String addlt = snapshot.child("Latitude").getValue().toString();
-                    String addlg = snapshot.child("Longitude").getValue().toString();;
+                    userID= firebaseAuth.getUid();
+                    String val1 = snapshot.child(userID).child("Food Name").getValue().toString();
+                    String val2 = snapshot.child(userID).child("Quantity").getValue().toString();
+                    String val3 = snapshot.child(userID).child("no of people").getValue().toString();
+                    String val4 = snapshot.child(userID).child("address").getValue().toString();
+                    String addlt = snapshot.child(userID).child("Latitude").getValue().toString();
+                    String addlg = snapshot.child(userID).child("Longitude").getValue().toString();
                     rdfoodname.setText(val1);
                     rdfoodqty.setText(val2);
                     rdnopeople.setText(val3);
                     rdaddress.setText(val4);
-                    String rstatus="In Process";
-                    rrstatus.setText(rstatus);
                 }
                 else{
                     Toast.makeText(requesthistory.this,"No Donate Request",Toast.LENGTH_SHORT).show();
@@ -80,21 +83,48 @@ public class requesthistory extends AppCompatActivity {
 
             }
         });
+
+        databaseReference= firebaseDatabase.getInstance().getReference().child("requeststatus");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    userID= firebaseAuth.getUid();
+                    String rstatus=snapshot.child(userID).child("status").getValue().toString();
+                    rrstatus.setText(rstatus);
+                }
+                else{
+                    Toast.makeText(requesthistory.this,"No Status",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         Button declined=findViewById(R.id.rdeclined);
         declined.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference= firebaseDatabase.getInstance().getReference().child("Requests");
-                databaseReference.child("f").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                databaseReference= firebaseDatabase.getInstance().getReference();
+                databaseReference.child("donorrequest").child(userID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(requesthistory.this,"Request Deleted",Toast.LENGTH_SHORT).show();
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                });
+                databaseReference.child("Requests").child("f").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(requesthistory.this,"No Request to delete",Toast.LENGTH_SHORT).show();
-
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(requesthistory.this,"Request Deleted",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                databaseReference.child("requeststatus").child(userID).child("status").setValue("").addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(requesthistory.this,"Request Deleted",Toast.LENGTH_SHORT).show();
                     }
                 });
 

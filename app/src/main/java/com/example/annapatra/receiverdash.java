@@ -40,6 +40,11 @@ public class receiverdash extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     DataSnapshot dataSnapshot;
     Adapter adapter;
+    String ddcounter="";
+    int ddcounterint;
+    String dduid;
+    String dddlt;
+    String dddlg;
     private FirebaseDatabase firebaseDatabase;
 
     @Override
@@ -63,13 +68,14 @@ public class receiverdash extends AppCompatActivity {
                     String val3 = snapshot.child("no of people").getValue().toString();
                     String val4 = snapshot.child("address").getValue().toString();
                     String addlt = snapshot.child("Latitude").getValue().toString();
-                    String addlg = snapshot.child("Longitude").getValue().toString();;
+                    String addlg = snapshot.child("Longitude").getValue().toString();
+                    dduid = snapshot.child("donoruid").getValue().toString();;
                     rfoodname.setText(val1);
                     rfoodqty.setText(val2+" "+"KG");
                     rnopeople.setText(val3);
                     raddress.setText(val4);
-                    //String dddlt=addlt;
-                    //String dddlg=addlg;
+                    dddlt=addlt;
+                    dddlg=addlg;
                 }
                 else{
                     Toast.makeText(receiverdash.this,"No Donate Request",Toast.LENGTH_SHORT).show();
@@ -81,14 +87,68 @@ public class receiverdash extends AppCompatActivity {
 
             }
         });
+        Button accepted=findViewById(R.id.raccept);
+        accepted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference= firebaseDatabase.getInstance().getReference();
+                databaseReference.child("Requests").child("f").removeValue();
+                databaseReference.child("requeststatus").child(dduid).child("status").setValue("Accepted");
+            }
+        });
+
+
         Button declined=findViewById(R.id.rdeclined);
         declined.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference= firebaseDatabase.getInstance().getReference().child("Requests");
-                databaseReference.child("f").removeValue();
+                databaseReference= firebaseDatabase.getInstance().getReference();
+                databaseReference.child("Requests").child("f").removeValue();
+                databaseReference.child("requeststatus").child(dduid).child("status").setValue("Declined");
             }
         });
+
+        Button workdone=findViewById(R.id.requestdone);
+        workdone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference= firebaseDatabase.getInstance().getReference().child("requeststatus");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()) {
+                            ddcounter=snapshot.child(dduid).child("donatecounter").getValue().toString();
+                            ddcounterint=Integer.parseInt(ddcounter);
+                        }
+                        else{
+                            databaseReference.child(dduid).child("donatecounter").setValue(0);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                databaseReference.child(dduid).child("status").setValue("Successful");
+                databaseReference.child(dduid).child("donatecounter").setValue(ddcounterint+1);
+            }
+        });
+
+        Button getddlocation = findViewById(R.id.getddirection);
+        getddlocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strUri = "http://maps.google.com/maps?q=loc:" + dddlt + "," + dddlg + " (" + "Label which you want" + ")";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+
+                startActivity(intent);
+            }
+        });
+
+
 
         navigationView=findViewById(R.id.dashnav);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -128,7 +188,13 @@ public class receiverdash extends AppCompatActivity {
                     }
                 });
 
+
+
+
+
+
     }
+
 
     private void signoutdonor() {
         SharedPreferences sharedPreferences =getSharedPreferences(splash.PREFS_NAME,0);
